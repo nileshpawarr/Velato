@@ -631,3 +631,11 @@ Implement in this order:
 ## 📄 License
 
 This project is licensed under the MIT License. 
+
+### Tasks
+
+[x] Configure docker compose to run postgres via docker locally
+[x] configure database connection -> appln prop.
+[x] Flyway migration -> (tables to start) -- study normalisation concept for tables creation
+[x] migrate users tables id, email, name, passwd
+[ ] endpoint - users, auth (use Bcrypt - hash for passwords)
