@@ -1,0 +1,49 @@
+version: "3"
+
+# Configure postgres database using, for example, postgres:16 image from docker hub.
+# Run with "docker compose up"
+
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: velato-postgres
+    environment:
+      POSTGRES_DB: velato_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - velato-network
+
+
+  redis:
+    image: redis:alpine
+    container_name: velato-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - velato-network
+
+  adminer:
+    image: adminer:4.8.1
+    container_name: velato-adminer
+    ports:
+      - "3030:3030"
+    depends_on:
+      - postgres
+    networks:
+      - velato-network
+
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  velato-network:
+    driver: bridge
