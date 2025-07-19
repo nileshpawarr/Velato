@@ -8,146 +8,17 @@ Backend API for the Velato luxury fashion e-commerce platform.
 
 Choose one of these recommended stacks:
 
-#### Option 1: Node.js + Express + TypeScript
-```bash
-# Initialize project
-npm init -y
-
-# Install dependencies
-npm install express cors helmet morgan bcryptjs jsonwebtoken
-npm install pg redis stripe
-
-# Install dev dependencies
-npm install -D typescript @types/node @types/express @types/cors @types/bcryptjs @types/jsonwebtoken nodemon ts-node
-
-# Initialize TypeScript
-npx tsc --init
-```
-
-#### Option 2: Python + FastAPI
-```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install fastapi uvicorn sqlalchemy psycopg2-binary redis python-jose[cryptography] passlib[bcrypt] stripe
-pip install -r requirements.txt
-```
-
-#### Option 3: Node.js + Fastify + TypeScript
-```bash
-# Initialize project
-npm init -y
-
-# Install dependencies
-npm install fastify @fastify/cors @fastify/helmet @fastify/jwt
-npm install pg redis stripe
-
-# Install dev dependencies
-npm install -D typescript @types/node nodemon ts-node
-```
-
-#### Option 4: Java + Spring Boot
+#### Java + Spring Boot
 ```bash
 # Using Spring Initializr (https://start.spring.io/) or CLI
 # Dependencies to include: Web, Security, JPA, PostgreSQL, Redis, Validation
-
-# Or using Maven
-mvn archetype:generate -DgroupId=com.velato.api -DartifactId=velato-backend -DarchetypeArtifactId=maven-archetype-quickstart
 
 # Or using Gradle
 gradle init --type java-application --dsl groovy --test-framework junit --package com.velato.api --project-name velato-backend
 ```
 
-**Maven Dependencies (pom.xml):**
-```xml
-<dependencies>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-validation</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-redis</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-    <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt</artifactId>
-        <version>0.9.1</version>
-    </dependency>
-    <dependency>
-        <groupId>com.stripe</groupId>
-        <artifactId>stripe-java</artifactId>
-        <version>24.16.0</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <scope>test</scope>
-    </dependency>
-</dependencies>
-```
 
-## 📁 Recommended Project Structure
-
-### Node.js/TypeScript Structure
-```
-backend/
-├── src/
-│   ├── routes/           # API route handlers
-│   │   ├── auth.ts      # Authentication routes
-│   │   ├── products.ts  # Product routes
-│   │   ├── users.ts     # User management routes
-│   │   ├── cart.ts      # Shopping cart routes
-│   │   ├── orders.ts    # Order management routes
-│   │   └── reviews.ts   # Review routes
-│   ├── middleware/       # Custom middleware
-│   │   ├── auth.ts      # JWT authentication middleware
-│   │   ├── validation.ts # Request validation
-│   │   └── rateLimiter.ts # Rate limiting
-│   ├── models/          # Data models/schemas
-│   │   ├── User.ts      # User model
-│   │   ├── Product.ts   # Product model
-│   │   ├── Order.ts     # Order model
-│   │   └── Review.ts    # Review model
-│   ├── services/        # Business logic
-│   │   ├── authService.ts
-│   │   ├── productService.ts
-│   │   ├── paymentService.ts
-│   │   └── emailService.ts
-│   ├── utils/           # Utility functions
-│   │   ├── db.ts        # Database connection
-│   │   ├── redis.ts     # Redis connection
-│   │   └── logger.ts    # Logging utility
-│   ├── types/           # TypeScript type definitions
-│   │   └── index.ts
-│   └── app.ts           # Main application setup
-├── migrations/          # Database migrations
-├── seeds/              # Database seed data
-├── tests/              # Test files
-├── docs/               # API documentation
-├── .env.example        # Environment variables template
-├── package.json        # Dependencies and scripts
-└── README.md          # This file
-```
+## 📁 Project Structure
 
 ### Java Spring Boot Structure
 ```
@@ -208,44 +79,6 @@ backend/
 ```
 
 ## 🔧 Environment Setup
-
-### Node.js/TypeScript Environment
-
-Create a `.env` file in the backend directory:
-
-```env
-# Server
-PORT=8000
-NODE_ENV=development
-
-# Database
-DATABASE_URL=postgresql://username:password@localhost:5432/velato_db
-
-# Redis
-REDIS_URL=redis://localhost:6379
-
-# JWT
-JWT_SECRET=your-super-secret-jwt-key
-JWT_REFRESH_SECRET=your-super-secret-refresh-key
-JWT_EXPIRE=15m
-JWT_REFRESH_EXPIRE=7d
-
-# Stripe
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
-STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
-
-# Email (optional)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-
-# File Upload
-AWS_ACCESS_KEY_ID=your-aws-access-key
-AWS_SECRET_ACCESS_KEY=your-aws-secret-key
-AWS_BUCKET_NAME=velato-assets
-AWS_REGION=us-east-1
-```
 
 ### Java Spring Boot Configuration
 
@@ -328,16 +161,6 @@ brew services start postgresql
 createdb velato_db
 ```
 
-#### Ubuntu/Debian
-```bash
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-sudo -u postgres createdb velato_db
-```
-
-#### Windows
-Download and install from: https://www.postgresql.org/download/windows/
-
 ### Database Schema
 
 Run these SQL commands to create the initial tables:
@@ -351,167 +174,14 @@ CREATE TABLE users (
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     phone VARCHAR(20),
-    avatar_url TEXT,
-    join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
-
--- Products table
-CREATE TABLE products (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(255) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    original_price DECIMAL(10,2),
-    category VARCHAR(50) NOT NULL,
-    subcategory VARCHAR(50),
-    brand VARCHAR(100),
-    material TEXT,
-    care_instructions TEXT[],
-    is_featured BOOLEAN DEFAULT FALSE,
-    is_new BOOLEAN DEFAULT FALSE,
-    is_on_sale BOOLEAN DEFAULT FALSE,
-    stock INTEGER NOT NULL DEFAULT 0,
-    rating DECIMAL(3,2) DEFAULT 0,
-    review_count INTEGER DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Product images table
-CREATE TABLE product_images (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
-    image_url TEXT NOT NULL,
-    alt_text VARCHAR(255),
-    sort_order INTEGER DEFAULT 0
-);
-
--- Product sizes table
-CREATE TABLE product_sizes (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
-    size_name VARCHAR(50) NOT NULL,
-    size_value VARCHAR(50) NOT NULL,
-    in_stock BOOLEAN DEFAULT TRUE
-);
-
--- Product colors table
-CREATE TABLE product_colors (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
-    color_name VARCHAR(50) NOT NULL,
-    color_hex VARCHAR(7) NOT NULL,
-    in_stock BOOLEAN DEFAULT TRUE
-);
-
--- Cart items table
-CREATE TABLE cart_items (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
-    quantity INTEGER NOT NULL DEFAULT 1,
-    size VARCHAR(50),
-    color VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Orders table
-CREATE TABLE orders (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    order_number VARCHAR(100) UNIQUE NOT NULL,
-    status VARCHAR(50) NOT NULL DEFAULT 'pending',
-    subtotal DECIMAL(10,2) NOT NULL,
-    tax DECIMAL(10,2) NOT NULL,
-    shipping DECIMAL(10,2) NOT NULL,
-    total DECIMAL(10,2) NOT NULL,
-    shipping_address JSONB NOT NULL,
-    payment_method VARCHAR(50) NOT NULL,
-    payment_id VARCHAR(255),
-    estimated_delivery DATE,
-    tracking_number VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Order items table
-CREATE TABLE order_items (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    order_id UUID REFERENCES orders(id) ON DELETE CASCADE,
-    product_id UUID REFERENCES products(id),
-    quantity INTEGER NOT NULL,
-    size VARCHAR(50),
-    color VARCHAR(50),
-    price DECIMAL(10,2) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Reviews table
-CREATE TABLE reviews (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
-    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
-    title VARCHAR(255),
-    comment TEXT,
-    verified BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- Wishlist table
-CREATE TABLE wishlist_items (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(user_id, product_id)
-);
-
--- Indexes for better performance
-CREATE INDEX idx_products_category ON products(category);
-CREATE INDEX idx_products_featured ON products(is_featured);
-CREATE INDEX idx_products_price ON products(price);
-CREATE INDEX idx_cart_items_user ON cart_items(user_id);
-CREATE INDEX idx_orders_user ON orders(user_id);
-CREATE INDEX idx_reviews_product ON reviews(product_id);
 ```
 
 ## 🚀 Quick Start Commands
 
-### Node.js/TypeScript Commands
-```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run tests
-npm test
-
-# Run database migrations
-npm run migrate
-
-# Seed database with sample data
-npm run seed
-```
-
 ### Java Spring Boot Commands
 ```bash
-# Using Maven
-mvn spring-boot:run                 # Start development server
-mvn clean compile                   # Compile the project
-mvn package                         # Build JAR for production
-mvn test                           # Run tests
-mvn flyway:migrate                 # Run database migrations
-mvn clean install                  # Clean and install dependencies
 
 # Using Gradle
 ./gradlew bootRun                  # Start development server
@@ -560,24 +230,6 @@ Implement in this order:
 - Payment integration tests
 
 ## 📚 Useful Libraries
-
-### Node.js/Express
-- `express-validator` - Request validation
-- `express-rate-limit` - Rate limiting
-- `helmet` - Security headers
-- `morgan` - HTTP request logging
-- `compression` - Response compression
-- `multer` - File upload handling
-- `nodemailer` - Email sending
-- `jest` - Testing framework
-
-### Python/FastAPI
-- `pydantic` - Data validation
-- `python-multipart` - File uploads
-- `slowapi` - Rate limiting
-- `pytest` - Testing framework
-- `alembic` - Database migrations
-- `celery` - Background tasks
 
 ### Java/Spring Boot
 - `spring-boot-starter-validation` - Bean validation
